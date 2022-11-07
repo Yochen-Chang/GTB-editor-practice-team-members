@@ -87,9 +87,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 
-function Edit() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "New edit");
+
+
+function Edit(_ref) {
+  let {
+    attributes,
+    setAttributes
+  } = _ref;
+  const {
+    name,
+    bio
+  } = attributes;
+
+  const onchangeName = newName => {
+    setAttributes({
+      name: newName
+    });
+  };
+
+  const onchangeBio = newBio => {
+    setAttributes({
+      bio: newBio
+    });
+  };
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Member Name', 'team-member'),
+    tagName: "h4",
+    onChange: onchangeName,
+    value: name
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Member Bio', 'team-member'),
+    tagName: "p",
+    onChange: onchangeBio,
+    value: bio
+  }));
 }
 
 /***/ }),
@@ -117,7 +154,23 @@ __webpack_require__.r(__webpack_exports__);
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('A team member item', 'team-members'),
   icon: 'admin-users',
   parent: ['blocks-course/team-members'],
-  edit: () => _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  supports: {
+    reusable: false,
+    html: false
+  },
+  attributes: {
+    name: {
+      type: 'string',
+      source: 'html',
+      selector: 'h4'
+    },
+    bio: {
+      type: 'string',
+      source: 'html',
+      selector: 'p'
+    }
+  },
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "save")
 });
 
